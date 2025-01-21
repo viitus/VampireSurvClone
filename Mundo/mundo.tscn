@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c24nnmlcp336g"]
+
+[ext_resource type="Texture2D" uid="uid://c60bid6yukjed" path="res://Textures/dirt_full_new.png" id="1_5yw6x"]
+[ext_resource type="PackedScene" uid="uid://w0mgrilipgy6" path="res://Jogador/jogador.tscn" id="2_5bih8"]
+
+[node name="Mundo" type="Node2D"]
+
+[node name="Fundo" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, 1)
+texture = ExtResource("1_5yw6x")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 360)
+
+[node name="Jogador" parent="." instance=ExtResource("2_5bih8")]
