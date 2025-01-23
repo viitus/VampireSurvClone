@@ -17,5 +17,19 @@ region_rect = Rect2(-3000, -3000, 3000, 3000)
 
 [node name="Jogador" parent="." instance=ExtResource("2_5bih8")]
 
+[node name="Hurtbox" parent="Jogador" index="4"]
+collision_layer = 2
+collision_mask = 2
+HurtboxType = 0
+
 [node name="inimigo_kobold_weak" parent="." instance=ExtResource("3_s5trm")]
 position = Vector2(22.3456, 37.7053)
+
+[node name="Hurtbox" parent="inimigo_kobold_weak" index="3"]
+HurtboxType = 2
+
+[editable path="Jogador"]
+[editable path="Jogador/Hurtbox"]
+[editable path="inimigo_kobold_weak"]
+[editable path="inimigo_kobold_weak/Hurtbox"]
+[editable path="inimigo_kobold_weak/Hitbox"]
