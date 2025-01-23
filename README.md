@@ -8,5 +8,5 @@ Esse é um porjeto de desenvolvimento de um clone do jogo indie Vampire Survivor
 
 Elementos até o momento: 
 - background
-- player: movimento e animação
-- inimigo base: movimento e animação
+- player: movimento, animação, hurtbox
+- inimigo base: movimento, animação, hitbox, hurtbox
