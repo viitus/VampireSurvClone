@@ -5,6 +5,7 @@ var hp = 50
 
 @onready var sprite = $Sprite2D
 @onready var walkTimer = $walkTimer
+@onready var hurtbox = $Hurtbox
 
 func _physics_process(_delta: float) -> void:
 	movement()
@@ -32,4 +33,4 @@ func movement():
 
 func _on_hurtbox_hurt(damage: Variant) -> void:
 	hp -= damage
-	print(hp)
+	print("Hp:",hp)
