@@ -11,9 +11,6 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.is_in_group("attack"):
 		if area.has_method("get") and not area.get("damage") == null:
 			
-			var damage = area.damage
-			emit_signal("hurt",damage)
-			
 			match HurtboxType:
 				0: #Cooldown
 					collision.call_deferred("set","disabled",true)
@@ -23,7 +20,10 @@ func _on_area_entered(area: Area2D) -> void:
 				2: #Disablehitbox
 					if area.has_method("tempdisable"):
 						area.tempdisable()
-
+			var damage = area.damage
+			emit_signal("hurt",damage)
+			if area.has_method("enemy_hit"):
+				area.enemy_hit(1)
 
 func _on_disable_timer_timeout() -> void:
 	collision.call_deferred("set","disabled",false)

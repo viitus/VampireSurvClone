@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c24nnmlcp336g"]
+[gd_scene load_steps=9 format=3 uid="uid://c24nnmlcp336g"]
 
 [ext_resource type="Texture2D" uid="uid://c60bid6yukjed" path="res://Textures/dirt_full_new.png" id="1_5yw6x"]
 [ext_resource type="PackedScene" uid="uid://w0mgrilipgy6" path="res://Jogador/jogador.tscn" id="2_5bih8"]
@@ -9,24 +9,32 @@
 [sub_resource type="Resource" id="Resource_ld2dp"]
 script = ExtResource("4_sw6in")
 time_start = 0
-time_end = 60
+time_end = 5
 enemy = ExtResource("3_s5trm")
-enemy_num = 1
+enemy_num = 10
 enemy_spawn_delay = 1
 
 [sub_resource type="Resource" id="Resource_5bj17"]
 script = ExtResource("4_sw6in")
-time_start = 30
-time_end = 120
+time_start = 5
+time_end = 15
 enemy = ExtResource("3_s5trm")
-enemy_num = 10
+enemy_num = 1
 enemy_spawn_delay = 10
+
+[sub_resource type="Resource" id="Resource_2hm7e"]
+script = ExtResource("4_sw6in")
+time_start = 15
+time_end = 60
+enemy = ExtResource("3_s5trm")
+enemy_num = 30
+enemy_spawn_delay = 1
 
 [node name="Mundo" type="Node2D"]
 
 [node name="Fundo" type="Sprite2D" parent="."]
 texture_filter = 1
-texture_repeat = 2
+texture_repeat = 3
 position = Vector2(-1500, -1500)
 texture = ExtResource("1_5yw6x")
 centered = false
@@ -36,4 +44,4 @@ region_rect = Rect2(-3000, -3000, 3000, 3000)
 [node name="Jogador" parent="." instance=ExtResource("2_5bih8")]
 
 [node name="SpawnerInimigo" parent="." instance=ExtResource("3_ga0od")]
-spawns = Array[ExtResource("4_sw6in")]([SubResource("Resource_ld2dp"), SubResource("Resource_5bj17")])
+spawns = Array[ExtResource("4_sw6in")]([SubResource("Resource_ld2dp"), SubResource("Resource_5bj17"), SubResource("Resource_2hm7e")])
