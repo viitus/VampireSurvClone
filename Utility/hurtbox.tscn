@@ -6,6 +6,7 @@
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_e53nj")
+HurtboxType = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -14,4 +15,5 @@ wait_time = 0.5
 one_shot = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="hurt" from="." to="." method="_on_hurt"]
 [connection signal="timeout" from="DisableTimer" to="." method="_on_disable_timer_timeout"]

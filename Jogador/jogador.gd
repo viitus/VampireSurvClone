@@ -59,7 +59,7 @@ func movement():
 	velocity = mov.normalized()*movement_speed
 	move_and_slide()
 
-func _on_hurtbox_hurt(damage: Variant) -> void:
+func _on_hurtbox_hurt(damage, _angle, _knockback):
 	hp -= damage
 	print("Hp:",hp)
 
