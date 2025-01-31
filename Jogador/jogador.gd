@@ -4,6 +4,10 @@ var movement_speed = 80.0
 var hp = 50
 var last_movement = Vector2.UP
 
+var experience = 0
+var experience_level = 1
+var collected_experience = 0
+
 #Attacks
 var iceSpear = preload("res://Jogador/Attack/ice_spear.tscn")
 var tornado  = preload("res://Jogador/Attack/tornado.tscn")
@@ -17,20 +21,20 @@ var javelin = preload("res://Jogador/Attack/javelin.tscn")
 @onready var javelinBase = get_node("%JavelinBase")
 
 #IceSpear
-var icespear_ammo = 0
-var icespear_baseammo = 5
+var icespear_ammo = 1
+var icespear_baseammo = 1
 var icespear_attackspeed = 1.5 
 var icespear_level = 0
 
 #Tornado
-var tornado_ammo = 0
-var tornado_baseammo = 5
+var tornado_ammo = 1
+var tornado_baseammo = 10
 var tornado_attackspeed = 1.5 
-var tornado_level = 0
+var tornado_level = 1
 
 #Javelin
 var javelin_ammo = 3
-var javelin_level = 1
+var javelin_level = 0
 
 #EnemyRelated
 var enemy_close = []
@@ -39,8 +43,13 @@ var enemy_close = []
 @onready var walkTimer = $walkTimer
 @onready var hurtbox = $Hurtbox
 
+#GUI
+@onready var expBar = get_node("%ExperienceBar")
+@onready var lblLevel = get_node("%Label_level")
+
 func _ready() -> void:
 	attack()
+	set_expBar(experience, calculate_experience_cap())
 
 func attack():
 	if icespear_level > 0:
@@ -141,3 +150,41 @@ func _on_enemy_detection_area_body_entered(body: Node2D) -> void:
 func _on_enemy_detection_area_body_exited(body: Node2D) -> void:
 	if enemy_close.has(body):
 		enemy_close.erase(body)
+
+func _on_grab_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		area.target = self
+
+func _on_collect_area_area_entered(area: Area2D) -> void:
+	if area.is_in_group("loot"):
+		var gem_exp = area.collect()
+		calculate_experience(gem_exp)
+
+func calculate_experience(gem_exp):
+	var exp_required = calculate_experience_cap()
+	collected_experience += gem_exp
+	if experience + collected_experience >= exp_required:
+		collected_experience -= exp_required - experience
+		experience_level += 1
+		lblLevel.text = str("Level: ", experience_level)
+		experience = 0
+		exp_required = calculate_experience_cap()
+		calculate_experience(0)
+	else: 
+		experience += collected_experience
+		collected_experience = 0
+	set_expBar(experience, exp_required)
+
+func calculate_experience_cap():
+	var exp_cap = experience_level
+	if experience_level < 20:
+		exp_cap = experience_level * 5
+	elif experience_level < 40:
+		exp_cap + 95 * (experience_level-19)*8
+	else:
+		exp_cap = 255 + (experience_level-39)*12
+	return exp_cap
+
+func set_expBar(set_value = 1, set_max_value = 100):
+	expBar.value = set_value
+	expBar.max_value = set_max_value
