@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://w0mgrilipgy6"]
+[gd_scene load_steps=13 format=3 uid="uid://w0mgrilipgy6"]
 
 [ext_resource type="Script" path="res://Jogador/jogador.gd" id="1_h17ii"]
 [ext_resource type="Texture2D" uid="uid://bxx62bf1k4w8k" path="res://Textures/Player/player_sprite.png" id="1_sgvcc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bdcugorg1hve" path="res://Textures/GUI/exp_background.png" id="4_m4nbd"]
 [ext_resource type="Texture2D" uid="uid://bfbf1v32w2ax8" path="res://Textures/GUI/exp_progress.png" id="5_tib0h"]
 [ext_resource type="FontFile" uid="uid://682ea02knwqo" path="res://Font/tenderness.otf" id="6_f10r4"]
+[ext_resource type="AudioStream" uid="uid://coyl2o1wg2x3o" path="res://Audio/SoundEffect/levelup.ogg" id="7_tf3ej"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wkucf"]
 radius = 6.0
@@ -122,6 +123,39 @@ theme_override_font_sizes/font_size = 16
 text = "Level: 1"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="LevelUp" type="Panel" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+layout_mode = 0
+offset_left = 220.0
+offset_top = 400.0
+offset_right = 420.0
+offset_bottom = 650.0
+
+[node name="lbl_levelUP" type="Label" parent="GUILayer/GUI/LevelUp"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("6_f10r4")
+text = "Level Up !"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UpgradeOptions" type="VBoxContainer" parent="GUILayer/GUI/LevelUp"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 190.0
+offset_bottom = 100.0
+
+[node name="snd_levelup" type="AudioStreamPlayer" parent="GUILayer/GUI/LevelUp"]
+unique_name_in_owner = true
+stream = ExtResource("7_tf3ej")
+volume_db = -10.0
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="timeout" from="Attack/IceSpearTimer" to="." method="_on_ice_spear_timer_timeout"]
