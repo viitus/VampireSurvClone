@@ -1,4 +1,6 @@
-# Vampiros Clonados
+# Projeto para Optativa 5 - Blockchain e Gamificação
+
+## Vampiros Clonados
 
 Esse é um porjeto de desenvolvimento de um clone do jogo indie Vampire Survivors, para uma matéria da faculdade
 
