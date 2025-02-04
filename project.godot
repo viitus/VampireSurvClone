@@ -14,6 +14,10 @@ config/name="Vamp"
 run/main_scene="res://Mundo/mundo.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
+[autoload]
+
+UpgradeDb="*res://Utility/upgrade_db.tscn"
+
 [display]
 
 window/size/viewport_width=640
