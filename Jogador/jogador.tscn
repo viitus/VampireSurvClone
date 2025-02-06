@@ -1,12 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://w0mgrilipgy6"]
+[gd_scene load_steps=18 format=3 uid="uid://w0mgrilipgy6"]
 
 [ext_resource type="Script" path="res://Jogador/jogador.gd" id="1_h17ii"]
 [ext_resource type="Texture2D" uid="uid://bxx62bf1k4w8k" path="res://Textures/Player/player_sprite.png" id="1_sgvcc"]
 [ext_resource type="PackedScene" uid="uid://c4svvgyug8kxt" path="res://Utility/hurtbox.tscn" id="3_e84gi"]
 [ext_resource type="Texture2D" uid="uid://bdcugorg1hve" path="res://Textures/GUI/exp_background.png" id="4_m4nbd"]
 [ext_resource type="Texture2D" uid="uid://bfbf1v32w2ax8" path="res://Textures/GUI/exp_progress.png" id="5_tib0h"]
-[ext_resource type="FontFile" uid="uid://682ea02knwqo" path="res://Font/tenderness.otf" id="6_f10r4"]
 [ext_resource type="AudioStream" uid="uid://coyl2o1wg2x3o" path="res://Audio/SoundEffect/levelup.ogg" id="7_tf3ej"]
+[ext_resource type="Texture2D" uid="uid://d16ri4pd763by" path="res://Textures/GUI/healthbar.png" id="8_njq8n"]
+[ext_resource type="Texture2D" uid="uid://b4fi4y3nassxm" path="res://Textures/GUI/health.png" id="9_htu2f"]
+[ext_resource type="AudioStream" uid="uid://cbmd682i8p6s6" path="res://Audio/SoundEffect/Victory.wav" id="10_pgeiu"]
+[ext_resource type="FontFile" uid="uid://b6c5hvmfy515g" path="res://Font/Kaph-Regular.otf" id="10_v2110"]
+[ext_resource type="AudioStream" uid="uid://cdunf3xaxpcoa" path="res://Audio/SoundEffect/Lose.ogg" id="11_yiqny"]
+[ext_resource type="PackedScene" uid="uid://05qy8wtqfcho" path="res://Utility/basic_button.tscn" id="12_rwba8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wkucf"]
 radius = 6.0
@@ -47,6 +52,7 @@ visible = false
 position = Vector2(1.53026, 1.0319)
 collision_layer = 2
 collision_mask = 2
+HurtboxType = 0
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(-1.53026, 0.968098)
@@ -118,11 +124,23 @@ layout_mode = 0
 offset_left = 540.0
 offset_right = 640.0
 offset_bottom = 20.0
-theme_override_fonts/font = ExtResource("6_f10r4")
+theme_override_fonts/font = ExtResource("10_v2110")
 theme_override_font_sizes/font_size = 16
 text = "Level: 1"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="HealthBar" type="TextureProgressBar" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+self_modulate = Color(1, 0.988235, 1, 0.588235)
+layout_mode = 0
+offset_left = 304.0
+offset_top = 200.0
+offset_right = 336.0
+offset_bottom = 208.0
+value = 50.0
+texture_over = ExtResource("8_njq8n")
+texture_progress = ExtResource("9_htu2f")
 
 [node name="LevelUp" type="Panel" parent="GUILayer/GUI"]
 unique_name_in_owner = true
@@ -139,7 +157,7 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 40.0
-theme_override_fonts/font = ExtResource("6_f10r4")
+theme_override_fonts/font = ExtResource("10_v2110")
 text = "Level Up !"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -157,6 +175,76 @@ unique_name_in_owner = true
 stream = ExtResource("7_tf3ej")
 volume_db = -10.0
 
+[node name="DeathPanel" type="Panel" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+process_mode = 2
+visible = false
+layout_mode = 0
+offset_left = 220.0
+offset_top = 400.0
+offset_right = 420.0
+offset_bottom = 650.0
+
+[node name="lbl_Result" type="Label" parent="GUILayer/GUI/DeathPanel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("10_v2110")
+text = "Resultado"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="snd_victory" type="AudioStreamPlayer" parent="GUILayer/GUI/DeathPanel"]
+unique_name_in_owner = true
+stream = ExtResource("10_pgeiu")
+volume_db = -10.0
+
+[node name="snd_lose" type="AudioStreamPlayer" parent="GUILayer/GUI/DeathPanel"]
+unique_name_in_owner = true
+stream = ExtResource("11_yiqny")
+volume_db = -10.0
+
+[node name="btn_menu" parent="GUILayer/GUI/DeathPanel" instance=ExtResource("12_rwba8")]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 200.0
+offset_right = 140.0
+offset_bottom = 230.0
+theme_override_fonts/font = ExtResource("10_v2110")
+text = "Menu"
+
+[node name="lblTimer" type="Label" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 280.0
+offset_top = 20.0
+offset_right = 360.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("10_v2110")
+theme_override_font_sizes/font_size = 20
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollectedWeapons" type="GridContainer" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 208.0
+offset_bottom = 40.0
+columns = 10
+
+[node name="CollectedUpgrades" type="GridContainer" parent="GUILayer/GUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 208.0
+offset_bottom = 56.0
+columns = 10
+
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
 [connection signal="timeout" from="Attack/IceSpearTimer" to="." method="_on_ice_spear_timer_timeout"]
 [connection signal="timeout" from="Attack/IceSpearTimer/IceSpearAttackTimer" to="." method="_on_ice_spear_attack_timer_timeout"]
@@ -166,5 +254,6 @@ volume_db = -10.0
 [connection signal="body_exited" from="EnemyDetectionArea" to="." method="_on_enemy_detection_area_body_exited"]
 [connection signal="area_entered" from="GrabArea" to="." method="_on_grab_area_area_entered"]
 [connection signal="area_entered" from="CollectArea" to="." method="_on_collect_area_area_entered"]
+[connection signal="click_end" from="GUILayer/GUI/DeathPanel/btn_menu" to="." method="_on_btn_menu_click_end"]
 
 [editable path="Hurtbox"]

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Vamp"
-run/main_scene="res://Mundo/mundo.tscn"
+run/main_scene="res://TitleScreen/menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
