@@ -295,7 +295,7 @@ func upgrade_character(upgrade):
 		"armor1","armor2","armor3","armor4":
 			armor += 1
 		"speed1","speed2","speed3","speed4":
-			movement_speed += 20.0
+			movement_speed += 10.0
 		"tome1","tome2","tome3","tome4":
 			spell_size += 0.10
 		"scroll1","scroll2","scroll3","scroll4":
