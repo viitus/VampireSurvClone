@@ -1,61 +1,106 @@
-[gd_scene load_steps=13 format=3 uid="uid://c24nnmlcp336g"]
+[gd_scene load_steps=22 format=3 uid="uid://c24nnmlcp336g"]
 
-[ext_resource type="Texture2D" uid="uid://c60bid6yukjed" path="res://Textures/dirt_full_new.png" id="1_5yw6x"]
+[ext_resource type="Texture2D" uid="uid://b5rbypmvwma8a" path="res://Textures/GRASS+7.png" id="1_sy72w"]
 [ext_resource type="PackedScene" uid="uid://w0mgrilipgy6" path="res://Jogador/jogador.tscn" id="2_5bih8"]
 [ext_resource type="PackedScene" uid="uid://cj4v2qylmn58a" path="res://Utility/spawner_inimigo.tscn" id="3_ga0od"]
-[ext_resource type="PackedScene" uid="uid://c7vic478tjefn" path="res://Inimigo/inimigo.tscn" id="3_s5trm"]
 [ext_resource type="Script" path="res://Utility/spawn_info.gd" id="4_sw6in"]
+[ext_resource type="PackedScene" uid="uid://c7vic478tjefn" path="res://Inimigo/enemy_kobold_weak.tscn" id="5_sr165"]
 [ext_resource type="PackedScene" uid="uid://bvyaefv2dnn4j" path="res://Objects/experience_gem.tscn" id="6_b8h7i"]
+[ext_resource type="PackedScene" uid="uid://f0whme40xtrd" path="res://Inimigo/enemy_kobold_strong.tscn" id="6_uwo8b"]
 [ext_resource type="AudioStream" uid="uid://b1bf1iwgc7jix" path="res://Audio/Music/battleThemeA.mp3" id="7_mp3qw"]
+[ext_resource type="PackedScene" uid="uid://ciumbtu0fpsbx" path="res://Inimigo/cyclops.tscn" id="7_vqvh4"]
+[ext_resource type="PackedScene" uid="uid://b8623p2h76p3o" path="res://Inimigo/jugernaut.tscn" id="8_0mf8a"]
 [ext_resource type="Script" path="res://Mundo/snd_music.gd" id="8_xdryl"]
+[ext_resource type="PackedScene" uid="uid://c63t7mi1f0adn" path="res://Inimigo/super.tscn" id="9_7e0yw"]
 
-[sub_resource type="Resource" id="Resource_ld2dp"]
+[sub_resource type="Resource" id="Resource_hsflj"]
 script = ExtResource("4_sw6in")
 time_start = 0
 time_end = 30
-enemy = ExtResource("3_s5trm")
+enemy = ExtResource("5_sr165")
 enemy_num = 1
-enemy_spawn_delay = 10
+enemy_spawn_delay = 0
 
-[sub_resource type="Resource" id="Resource_5bj17"]
+[sub_resource type="Resource" id="Resource_8m1pl"]
 script = ExtResource("4_sw6in")
 time_start = 30
-time_end = 60
-enemy = ExtResource("3_s5trm")
-enemy_num = 10
-enemy_spawn_delay = 1
+time_end = 210
+enemy = ExtResource("5_sr165")
+enemy_num = 2
+enemy_spawn_delay = 0
 
-[sub_resource type="Resource" id="Resource_2hm7e"]
+[sub_resource type="Resource" id="Resource_0a13c"]
 script = ExtResource("4_sw6in")
 time_start = 60
-time_end = 120
-enemy = ExtResource("3_s5trm")
-enemy_num = 20
+time_end = 180
+enemy = ExtResource("6_uwo8b")
+enemy_num = 1
+enemy_spawn_delay = 1
+
+[sub_resource type="Resource" id="Resource_bmmlm"]
+script = ExtResource("4_sw6in")
+time_start = 180
+time_end = 210
+enemy = ExtResource("7_vqvh4")
+enemy_num = 1
 enemy_spawn_delay = 2
 
-[sub_resource type="Resource" id="Resource_5n70i"]
+[sub_resource type="Resource" id="Resource_s2w2f"]
+script = ExtResource("4_sw6in")
+time_start = 210
+time_end = 240
+enemy = ExtResource("6_uwo8b")
+enemy_num = 2
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_x5kp2"]
+script = ExtResource("4_sw6in")
+time_start = 240
+time_end = 300
+enemy = ExtResource("7_vqvh4")
+enemy_num = 10
+enemy_spawn_delay = 10
+
+[sub_resource type="Resource" id="Resource_hwwl6"]
+script = ExtResource("4_sw6in")
+time_start = 210
+time_end = 210
+enemy = ExtResource("8_0mf8a")
+enemy_num = 5
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_2ndlh"]
 script = ExtResource("4_sw6in")
 time_start = 120
+time_end = 180
+enemy = ExtResource("6_uwo8b")
+enemy_num = 3
+enemy_spawn_delay = 0
+
+[sub_resource type="Resource" id="Resource_llkyk"]
+script = ExtResource("4_sw6in")
+time_start = 300
 time_end = 300
-enemy = ExtResource("3_s5trm")
-enemy_num = 100
-enemy_spawn_delay = 1
+enemy = ExtResource("9_7e0yw")
+enemy_num = 1
+enemy_spawn_delay = 0
 
 [node name="Mundo" type="Node2D"]
 
 [node name="Fundo" type="Sprite2D" parent="."]
-texture_filter = 1
-texture_repeat = 3
+modulate = Color(0.2646, 0.63, 0.2646, 1)
+texture_filter = 2
+texture_repeat = 2
 position = Vector2(-1500, -1500)
-texture = ExtResource("1_5yw6x")
+texture = ExtResource("1_sy72w")
 centered = false
 region_enabled = true
-region_rect = Rect2(-3000, -3000, 3000, 3000)
+region_rect = Rect2(3000, 3000, 3000, 3000)
 
 [node name="Jogador" parent="." instance=ExtResource("2_5bih8")]
 
 [node name="SpawnerInimigo" parent="." instance=ExtResource("3_ga0od")]
-spawns = Array[ExtResource("4_sw6in")]([SubResource("Resource_ld2dp"), SubResource("Resource_5bj17"), SubResource("Resource_2hm7e"), SubResource("Resource_5n70i")])
+spawns = Array[ExtResource("4_sw6in")]([SubResource("Resource_hsflj"), SubResource("Resource_8m1pl"), SubResource("Resource_0a13c"), SubResource("Resource_bmmlm"), SubResource("Resource_s2w2f"), SubResource("Resource_x5kp2"), SubResource("Resource_hwwl6"), SubResource("Resource_2ndlh"), SubResource("Resource_llkyk")])
 
 [node name="Loot" type="Node2D" parent="." groups=["loot"]]
 

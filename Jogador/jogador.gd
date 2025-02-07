@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var movement_speed = 80.0
+var movement_speed = 40.0
 var hp = 80
 var maxhp = 80
 var last_movement = Vector2.UP
@@ -104,12 +104,10 @@ func movement():
 	var x_mov = Input.get_action_strength("right") - Input.get_action_strength("left")
 	var y_mov = Input.get_action_strength("down") - Input.get_action_strength("up")
 	var mov = Vector2(x_mov,y_mov)
-	
 	if mov.x > 0:
 		sprite.flip_h = true
 	elif mov.x < 0:
 		sprite.flip_h = false
-	
 	if mov != Vector2.ZERO: 
 		last_movement = mov
 		if walkTimer.is_stopped():
@@ -118,7 +116,6 @@ func movement():
 			else: 
 				sprite.frame = 1
 			walkTimer.start()
-	
 	velocity = mov.normalized()*movement_speed
 	move_and_slide()
 
@@ -307,6 +304,7 @@ func upgrade_character(upgrade):
 		"food":
 			hp += 20
 			hp = clamp(hp,0,maxhp)
+			healthBar.value = hp
 	adjust_gui_collection(upgrade)
 	attack()
 	var option_children = upgradeOptions.get_children()
