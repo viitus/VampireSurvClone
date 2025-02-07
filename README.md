@@ -10,6 +10,9 @@ Elementos até o momento:
 - inimigo base: movimento, animação, hitbox, hurtbox, hurtsound, death animation
 - level up 
 
+### Jogue aqui
+- https://viitus.itch.io/campos-da-morte
+
 ### Referência
 - por enquanto estou seguindo o tutorial do youtube:
 - https://youtube.com/playlist?list=PLtosjGHWDab682nfZ1f6JSQ1cjap7Ieeb&si=U3lk_k0-CvXCZNIz
