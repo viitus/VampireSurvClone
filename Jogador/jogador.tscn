@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://w0mgrilipgy6"]
 
 [ext_resource type="Script" path="res://Jogador/jogador.gd" id="1_h17ii"]
-[ext_resource type="Texture2D" uid="uid://bxx62bf1k4w8k" path="res://Textures/Player/player_sprite.png" id="1_sgvcc"]
+[ext_resource type="Texture2D" uid="uid://dlvcaxngyj5wi" path="res://Textures/Player/Run (64x64)-sheet2.png" id="2_7f854"]
 [ext_resource type="PackedScene" uid="uid://c4svvgyug8kxt" path="res://Utility/hurtbox.tscn" id="3_e84gi"]
 [ext_resource type="Texture2D" uid="uid://bdcugorg1hve" path="res://Textures/GUI/exp_background.png" id="4_m4nbd"]
 [ext_resource type="Texture2D" uid="uid://bfbf1v32w2ax8" path="res://Textures/GUI/exp_progress.png" id="5_tib0h"]
@@ -33,18 +33,18 @@ motion_mode = 1
 script = ExtResource("1_h17ii")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_sgvcc")
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_7f854")
 hframes = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_wkucf")
 
 [node name="walkTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.15
 one_shot = true
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_e84gi")]

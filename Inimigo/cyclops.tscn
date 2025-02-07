@@ -65,6 +65,7 @@ experience = 10
 damage = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
 texture = ExtResource("2_u0ry6")
 hframes = 2
 

@@ -9,6 +9,7 @@ var experience = 0
 var experience_level = 1
 var collected_experience = 0
 
+
 #Attacks
 var iceSpear = preload("res://Jogador/Attack/ice_spear.tscn")
 var tornado  = preload("res://Jogador/Attack/tornado.tscn")
