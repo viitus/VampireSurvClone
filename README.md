@@ -8,7 +8,9 @@ Elementos até o momento:
 - background
 - player: movimento, animação, hurtbox, ice spear attack, javelin attack, tornado attack
 - inimigo base: movimento, animação, hitbox, hurtbox, hurtsound, death animation
-- level up 
+- tipos de inimigos: kobold weak, kobold strong, cyclops, juggernaut, giant Slime, cada um atributos diferentes porém mesma lógica.
+- level up, itens e armas, 4 níveis de upgrade de cada.
+- tela de início,tela de vitória e de perda.
 
 ### Jogue aqui
 - https://viitus.itch.io/campos-da-morte
